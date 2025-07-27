@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  frontend:
+    container_name: clikit_client
+    build:
+      context: ./client
+    image: pratyush044/clikit_client
+    env_file:
+      - ./client/.env
+    ports:
+      - "4174:4174"
+    depends_on:
+      - backend
+  
+  backend:
+    container_name: clikit_server
+    build:
+      context: ./server
+    image: pratyush044/clikit_server
+    env_file:
+      - ./server/.env
+    ports:
+      - "8082:8082"
